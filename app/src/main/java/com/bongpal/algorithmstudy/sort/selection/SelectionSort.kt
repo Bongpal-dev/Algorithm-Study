@@ -7,20 +7,24 @@ fun main() {
 }
 
 fun IntArray.selectionSort(): IntArray {
+    val result = this.copyOf()
+    var counter = 0L
     var minIndex = 0
 
-    for (i in 0 .. this.lastIndex) {
+    for (i in 0 .. result.lastIndex) {
         minIndex = i
 
-        for (j in i + 1 .. this.lastIndex) {
-            if (this[j] < this[minIndex]) {
+        for (j in i + 1 .. result.lastIndex) {
+            if (result[j] < result[minIndex]) {
                 minIndex = j
             }
+            counter++
         }
-        val temp = this[minIndex]
+        val temp = result[minIndex]
 
-        this[minIndex] = this[i]
-        this[i] = temp
+        result[minIndex] = result[i]
+        result[i] = temp
     }
-    return this.copyOf()
+    println("선택정렬 연산 횟수: ${counter}회")
+    return result
 }
