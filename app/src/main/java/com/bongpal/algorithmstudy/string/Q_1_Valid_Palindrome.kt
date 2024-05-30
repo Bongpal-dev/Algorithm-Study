@@ -1,14 +1,14 @@
 package com.bongpal.algorithmstudy.string
 
 fun main() {
-    val solution = Solution()
+    val sol = Solution1()
 
-    println(solution.isPalindrome("A man, a plan, a canal: Panama"))
-    println(solution.isPalindrome("race a car"))
-    println(solution.isPalindrome(" "))
+    println(sol.isPalindrome("A man, a plan, a canal: Panama"))
+    println(sol.isPalindrome("race a car"))
+    println(sol.isPalindrome(" "))
 }
 
-class Solution {
+class Solution1 {
     fun isPalindrome(s: String): Boolean {
         val origin = s.filter{it.isLetterOrDigit()}.lowercase()
         val reverse = origin.reversed()
