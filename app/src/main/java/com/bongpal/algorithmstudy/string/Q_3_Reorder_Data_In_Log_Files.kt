@@ -10,14 +10,15 @@ fun main() {
 
     println(sol.reorderLogFiles(case1).joinToString())
     println(sol.reorderLogFiles(case2).joinToString())
+
 }
 
 class Solution3 {
     fun reorderLogFiles(logs: Array<String>): Array<String> {
         return logs.sortedWith(
             Comparator { o1, o2 ->
-                val r1 = o1.substringAfter(' ')
-                val r2 = o2.substringAfter(' ')
+                val r1 = o1.substringAfter(' ') // 8 1 5 1
+                val r2 = o2.substringAfter(' ') // art can
 
                 when {
                     r1[0].isDigit() && r2[0].isDigit() -> return@Comparator 0
