@@ -24,7 +24,7 @@ class Solution5 {
             result[key] = value.plus(i)
         }
 
-        return result.values.toList().sortedBy { it.size }
+        return result.values.sortedBy { it.size }
     }
 }
 

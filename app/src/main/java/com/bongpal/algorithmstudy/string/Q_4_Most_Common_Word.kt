@@ -11,6 +11,17 @@ fun main() {
     println(sol.mostCommonWord(case1[0] as String, case1[1] as Array<String>))
     println(sol.mostCommonWord(case2[0] as String, case2[1] as Array<String>))
     println(sol.mostCommonWord(case3[0] as String, case3[1] as Array<String>))
+
+    val s = listOf("one", "two", "three", "four")
+// 각 원소의 첫째글자를 key로 지정
+    val groupBy = s.groupBy { it.first() }
+    val groupingBy = s.groupingBy { it.first() }
+
+    println(groupBy)
+// groupBy의 경우 map이 반환됨 {o=[one], t=[two, three], f=[four]}
+
+    println(groupingBy.eachCount())
+//
 }
 
 class Solution4 {
