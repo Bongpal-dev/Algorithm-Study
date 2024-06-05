@@ -14,6 +14,9 @@
 
 <br>
 
+![Title](https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791189909550.jpg "자바 알고리즘 인터뷰 with 코틀린")
+
+
 ### 2 주차 [문자열 다루기]
 
 - `자바 알고리즘 인터뷰 with 코틀린` 책 문제풀이로 커리큘럼 대체
