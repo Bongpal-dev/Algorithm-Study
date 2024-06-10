@@ -19,37 +19,57 @@ fun main() {
 
 class Solution9 {
     fun threeSum(nums: IntArray): List<List<Int>> {
-        val lastIndex = nums.lastIndex
-        var answer = mutableListOf<List<Int>>()
+        val arr = nums.sorted()
+        val answer = mutableListOf<List<Int>>()
 
-        if (nums.size == 3 && nums[0] + nums[1] + nums[2] == 0) {
-            return listOf(listOf(nums[0], nums[1], nums[2]))
-        }
-
-        if (nums.size == 3) return listOf()
-
-        for (i in 0 until lastIndex - 1) {
+        for (i in 0..nums.lastIndex - 2) {
+            if (i > 0 && arr[i] == arr[i - 1]) continue
             var s = i + 1
-            var e = i + 2
+            var e = nums.lastIndex
 
-            while (e <= lastIndex && s < lastIndex - 1) {
-                var target = nums[i] + nums[s]
+            while (s < e) {
+                val sum = arr[i] + arr[s] + arr[e]
 
-                if (target + nums[e] == 0) {
-                    val zeroList = listOf(nums[i], nums[s], nums[e]).sorted()
-
-                    if (answer.contains(zeroList).not()) answer += zeroList
-                }
-                e++
-
-                if (e > lastIndex) {
-                    s++
-                    e = s + 1
+                when {
+                    sum < 0 -> s++
+                    sum > 0 -> e--
+                    else -> {
+                        answer.add(listOf(arr[i], arr[s], arr[e]))
+                        s++
+                        while (arr[s] == arr[s - 1] && s < e) s++
+                    }
                 }
             }
         }
-        return answer.sortedWith(compareBy({ it[0] }, { it[1] }, { it[2] }))
+        return answer
     }
 }
 
-// https://leetcode.com/problems/two-sum/
+//class Solution9 {
+//    fun threeSum(nums: IntArray): List<List<Int>> {
+//        var answer = mutableListOf<List<Int>>()
+//        val sums = hashMapOf<Int, Int>()
+//
+//        for (i in 0..nums.lastIndex - 2) {
+//            val sub = -nums[i]
+//
+//            for (j in i + 1..nums.lastIndex) {
+//                val target = sub - nums[j]
+//
+//                if (sums.containsKey(target)) {
+//                    val list =
+//                        listOf(nums[i], nums[j], nums[sums.getOrDefault(target, -1)]).sorted()
+//
+//                    if (!answer.contains(list)) {
+//                        answer.add(list)
+//                    }
+//                }
+//                sums[nums[j]] = j
+//            }
+//            sums.clear()
+//        }
+//        return answer
+//    }
+//}
+
+// https://leetcode.com/problems/3sum/
