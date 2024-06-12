@@ -18,6 +18,7 @@ fun main() {
 }
 
 class Solution9 {
+    val map = mutableMapOf<Int, Int>()
     fun threeSum(nums: IntArray): List<List<Int>> {
         val arr = nums.sorted()
         val answer = mutableListOf<List<Int>>()

@@ -1,7 +1,5 @@
 package com.bongpal.algorithmstudy.array
 
-import androidx.core.text.isDigitsOnly
-
 fun main() {
     val sol = Solution8()
     val case1 = intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)
@@ -18,53 +16,30 @@ fun main() {
 
 class Solution8 {
     fun trap(height: IntArray): Int {
+        if (height.size < 3) return 0
+
         var result = 0
-        var s = 0
-        var e = 0
+        var startMax = height.first()
+        var endMAx = height.last()
+        var start = 0
+        var end = height.lastIndex
 
-        while (true) {
-            if (s > height.lastIndex || e > height.lastIndex) {
-                break
-            }
+        while (start < end) {
+            if (height[start] <= height[end]) {
+                start++
+                startMax = maxOf(startMax, height[start])
+                val waterHeight = startMax - height[start]
 
-            if (s == e) {
-                e++
-                continue
-            }
-
-            if (height[s] < 1) {
-                s++
-                continue
-            }
-
-            if (height[e] < height[s]) {
-                e++
+                if (waterHeight > 0) result += waterHeight
             } else {
-                result += countWater(height.copyOfRange(s, e + 1))
-                s = e
-                continue
-            }
+                end--
+                endMAx = maxOf(endMAx, height[end])
+                val waterHeight = endMAx - height[end]
 
-            if (e > height.lastIndex) {
-                s++
-                e = s
+                if (waterHeight > 0) result += waterHeight
             }
         }
-
         return result
-    }
-
-    fun countWater(arr: IntArray): Int {
-        var count = 0
-        val limit = if (arr.first() < arr.last()) arr.first() else arr.last()
-
-        arr.forEach {
-            if (it < limit) count += limit - it
-        }
-        println("arr: ${arr.contentToString()}")
-        println("count: $count")
-
-        return count
     }
 }
 
