@@ -54,16 +54,16 @@ class Solution14 {
     }
 }
 
-//fun ListNode.joinToString(): String {
-//    var result = "["
-//    var temp = this
-//
-//    while (temp.next != null) {
-//        result += temp.`val`.toString() + ", "
-//        temp = temp.next!!
-//    }
-//    result += temp.`val`.toString() + "]"
-//    return result
-//}
+fun ListNode.joinToString(): String {
+    var result = "["
+    var temp = this
+
+    while (temp.next != null) {
+        result += temp.`val`.toString() + ", "
+        temp = temp.next!!
+    }
+    result += temp.`val`.toString() + "]"
+    return result
+}
 
 // https://leetcode.com/problems/merge-two-sorted-lists/
