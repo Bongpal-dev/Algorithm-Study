@@ -5,7 +5,7 @@ fun main() {
     val case1 = intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)
     val case2 = intArrayOf(4, 2, 0, 3, 2, 5)
     val case3 = intArrayOf(4, 2, 3)
-
+    case1.sortDescending()
     println("case1 ===========================")
     println(sol.trap(case1))
     println("case2 ===========================")

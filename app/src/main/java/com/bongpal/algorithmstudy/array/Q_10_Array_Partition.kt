@@ -13,8 +13,16 @@ fun main() {
 
 class Solution10 {
     fun arrayPairSum(nums: IntArray): Int {
-        return nums.sorted().filterIndexed{i, _ -> i % 2 == 0}.sum()
+        var result = 0
+
+        nums.sort()
+        nums.forEachIndexed{i, v -> if(i % 2 == 0) { result += v} }
+
+        return result
     }
+//    fun arrayPairSum(nums: IntArray): Int {
+//        return nums.sorted().filterIndexed{i, _ -> i % 2 == 0}.sum()
+//    }
 }
 
 // https://leetcode.com/problems/array-partition/
