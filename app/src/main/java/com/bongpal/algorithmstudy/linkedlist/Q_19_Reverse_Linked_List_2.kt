@@ -9,46 +9,35 @@ fun main() {
 
 class Solution19 {
     fun reverseBetween(head: ListNode?, left: Int, right: Int): ListNode? {
-        var list = head
-        val tempList = mutableListOf<Int>()
+        var list: ListNode? = ListNode(0).apply { next = head }
+        val listHead = list
+        var start: ListNode? = null
+        var end: ListNode? = null
+        var index = 0
 
-        while(list != null) {
-            tempList += list.`val`
+        while (list != null) {
+            if (index == left - 1) start = list
+            if (index == right) end = list.next
+
             list = list.next
+            index++
         }
 
-        val reverse = tempList.subList(left - 1, right).reversed()
+        var prev: ListNode? = null
+        var current = start?.next
+        var next: ListNode?
+        val endPoint = current
 
-        for (i in left - 1 until right) {
-            tempList[i] = reverse[i]
+        for (i in left..right) {
+            next = current?.next
+            current?.next = prev
+            prev = current
+            current = next
         }
-
-        var result: ListNode? = null
-        var temp: ListNode? = null
-
-        for (i in tempList) {
-            if (result == null) {
-                result = ListNode(i)
-                temp = result
-            } else {
-                temp?.next = ListNode(i)
-                temp = temp?.next
-            }
-        }
-        return result
-    }
-
-    fun ListNode.joinToString(): String {
-        var result = "["
-        var temp = this
-
-        while (temp.next != null) {
-            result += temp.`val`.toString() + ", "
-            temp = temp.next!!
-        }
-        result += temp.`val`.toString() + "]"
-        return result
+        start?.next = prev
+        endPoint?.next = end
+        return listHead?.next
     }
 }
 
-// https://leetcode.com/problems/add-two-numbers/
+// https://leetcode.com/problems/reverse-linked-list-ii/
